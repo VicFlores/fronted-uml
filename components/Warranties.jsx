@@ -60,8 +60,8 @@ const Bills = ({ clientDB }) => {
         <td>{ name }</td>
         <td> $ { price }</td>
         <td>{ client }</td>
+				<td>{ from }</td>
         <td>{ to }</td>
-        <td>{ from }</td>
         <td>{ flaw }</td>
       </tr>
     );

@@ -41,16 +41,6 @@ const Warranty = () => {
         <h4 className="grey-text">Garantia de clientes</h4>
         <div className="divider"></div>
 
-        
-        <div className="row section">
-          <div className="col s12 m6">
-            <div className="input-field">
-              <input id="bills" type="text" />
-              <label htmlFor="bills">Buscar garantia</label>
-            </div>
-          </div>
-        </div>
-
         <div className="card">
           <div className="card-content">
           <table className="responsive-table striped centered">

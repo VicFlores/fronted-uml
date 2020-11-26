@@ -73,9 +73,17 @@ export default function Home() {
 
   const showMessage = () => {
     return(
-      <div>
-        <p> { message } </p>
-      </div>
+			<div>
+
+				<div class="progress">
+      	<div class="indeterminate"></div>
+				</div>
+
+				<div>
+    			<p class="blue-text text-darken-2"> { message } </p>
+  			</div>
+
+			</div>
     )
   }
 

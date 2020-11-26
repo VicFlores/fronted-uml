@@ -143,7 +143,7 @@ const WarrantyDetails = () => {
 
                       </div>
 
-                      <div className="col s12 m8">
+                      <div className="col s12 m6">
                       <label htmlFor="client">Nombre de cliente</label>
                         <div className="input-field">
                           <input 
@@ -164,7 +164,7 @@ const WarrantyDetails = () => {
 
                       </div>
 
-											<div className="col s12 m8">
+											<div className="col s12 m6">
                       <label htmlFor="flaw">Descripcion de garantia</label>
                         <div className="input-field">
                           <input 

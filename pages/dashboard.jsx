@@ -49,12 +49,6 @@ const Dashboard = () => {
               <button className="waves-effect waves-light btn">Agregar nueva factura</button>
             </Link>
           </div>
-          <div className="col s12 m6">
-            <div className="input-field">
-              <input id="bills" type="text" />
-              <label htmlFor="bills">Buscar una factura</label>
-            </div>
-          </div>
         </div>
 
         <div className="card">

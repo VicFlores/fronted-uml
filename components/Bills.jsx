@@ -1,6 +1,7 @@
 import React from 'react';
-import Router from 'next/router'
-import { useMutation, gql } from '@apollo/client'
+import Router from 'next/router';
+import { useMutation, gql } from '@apollo/client';
+import Swal from 'sweetalert2';
 
 const DELETE_BILL = gql`
   mutation deleteBill($id: ID!) {
@@ -36,15 +37,40 @@ const Bills = ({ clientDB }) => {
     }
   });
 
-  const { name, price, client, id } = clientDB;
+	const { name, price, client, id } = clientDB;
 
-  const confirmDeleted = async () => {
-    const { data } = await deleteBill({
-      variables: {
-        id
-      }
-    });
-  }
+	const confirmDeleted = () => {
+		Swal.fire({
+				title: '¿Deseas eliminar esta factura?',
+				text: "¡Esta accion es irreversible!",
+				icon: 'warning',
+				showCancelButton: true,
+				confirmButtonColor: '#3085d6',
+				cancelButtonColor: '#d33',
+				confirmButtonText: 'Si, quiero eliminarla',
+				cancelButtonText: 'No, cancelar'
+			}).then( async (result) => {
+				if (result.value) {
+
+						try {
+
+							const { data } = await deleteBill({
+								variables: {
+									id
+								}
+							});
+
+							Swal.fire(
+								'¡Eliminado!',
+								'Factura eliminada exitosamente',
+								'success'
+							)
+						} catch {
+								return new Error(error);
+						}
+				}
+			})
+}
 
   const editBill = () => {
     Router.push({
