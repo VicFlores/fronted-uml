@@ -3,7 +3,9 @@ import Navbar from '../../components/Navbar';
 import { gql, useQuery, useMutation } from '@apollo/client';
 import { useRouter } from 'next/router';
 import { Formik } from 'formik';
+import Swal from 'sweetalert2'
 import * as Yup from 'yup';
+import styles from '../../styles/Home.module.css';
 
 const GET_BILL = gql`
   query getBill($id: ID!){
@@ -62,7 +64,13 @@ const WarrantyDetails = () => {
             flaw
           }
         }
-      })
+			})
+			
+			Swal.fire(
+				'Creada',
+				'Garantia registrada correctamente',
+				'success'
+			)
 
       router.push('/warranty');
     } catch (error) {
@@ -114,10 +122,11 @@ const WarrantyDetails = () => {
                         </div>
 
                         { props.touched.name && props.errors.name ? (
-                          <div className="">
-                            <p className="">Error</p>
-                            <p>{ props.errors.name }</p>
-                          </div>
+                          <div className= {styles.containerAlerts}>
+														<div className= {styles.alerts}>
+															<p>{ props.errors.name }</p>
+														</div>
+													</div>
                         ) : null }
 
                       </div>
@@ -135,10 +144,11 @@ const WarrantyDetails = () => {
                         </div>
 
                         { props.touched.price && props.errors.price ? (
-                          <div className="">
-                            <p className="">Error</p>
-                            <p>{ props.errors.price }</p>
-                          </div>
+                          <div className= {styles.containerAlerts}>
+														<div className= {styles.alerts}>
+															<p>{ props.errors.price }</p>
+														</div>
+													</div>
                         ) : null }
 
                       </div>
@@ -156,10 +166,11 @@ const WarrantyDetails = () => {
                         </div>
 
                         { props.touched.client && props.errors.client ? (
-                        <div className="">
-                          <p className="">Error</p>
-                          <p>{ props.errors.client }</p>
-                        </div>
+                        <div className= {styles.containerAlerts}>
+													<div className= {styles.alerts}>
+														<p>{ props.errors.client }</p>
+													</div>
+												</div>
                         ) : null }
 
                       </div>
@@ -177,10 +188,11 @@ const WarrantyDetails = () => {
                         </div>
 
                         { props.touched.flaw && props.errors.flaw ? (
-                        <div className="">
-                          <p className="">Error</p>
-                          <p>{ props.errors.flaw }</p>
-                        </div>
+                        <div className= {styles.containerAlerts}>
+													<div className= {styles.alerts}>
+														<p>{ props.errors.flaw }</p>
+													</div>
+												</div>
                         ) : null }
 
                       </div>
@@ -190,7 +202,7 @@ const WarrantyDetails = () => {
                           type="submit" 
                           className="waves-effect waves-light btn"
                         >
-                          Guardar
+                          Guardar garantia
                         </button>
                       </div>
 

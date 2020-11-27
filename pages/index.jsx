@@ -3,7 +3,8 @@ import Head from 'next/head';
 import { gql, useMutation } from '@apollo/client';
 import { useRouter } from 'next/router';
 import * as Yup from 'yup';
-import { useFormik } from 'formik'
+import { useFormik } from 'formik';
+import styles from '../styles/Home.module.css';
 
 const AUTH_EMPLOYEE = gql`
   mutation authEmployee ($input: AuthInput) {
@@ -27,8 +28,8 @@ export default function Home() {
     },
 
     validationSchema: Yup.object({
-      email: Yup.string().email('Email invalid').required('Email is required'),
-      password: Yup.string().required('Password is required')
+      email: Yup.string().email('Email invalido').required('Email es requerido'),
+      password: Yup.string().required('Contraseña es requerida')
     }),
 
     onSubmit: async valores => {
@@ -79,8 +80,8 @@ export default function Home() {
       	<div class="indeterminate"></div>
 				</div>
 
-				<div>
-    			<p class="blue-text text-darken-2"> { message } </p>
+				<div className={styles.validateAlert}>
+    			<p> { message } </p>
   			</div>
 
 			</div>
@@ -104,11 +105,11 @@ export default function Home() {
               <div className="card">
                 <div className="card-content">
                   <span className="card-title">Iniciar Sesion</span>
-                  <form onSubmit={formik.handleSubmit}>
+                  <form className="section" onSubmit={formik.handleSubmit}>
 
                   { message && showMessage() }
                     
-                  <div className="input-field">
+                  <div className="input-field section">
                     <input 
                       id="email" 
                       type="text"
@@ -120,10 +121,11 @@ export default function Home() {
                   </div>
 
                   {  formik.touched.email && formik.errors.email ? (
-                    <div>
-                      <p>Error</p>
-                      <p>{ formik.errors.email }</p>
-                    </div>
+                    <div className= {styles.containerAlerts}>
+											<div className= {styles.alerts}>
+												<p>{ formik.errors.email }</p>
+											</div>
+										</div>
                   ) : null }
 
                   <div className="input-field">
@@ -138,18 +140,21 @@ export default function Home() {
                   </div>
 
                   {  formik.touched.password && formik.errors.password ? (
-                    <div>
-                      <p>Error</p>
-                      <p>{ formik.errors.password }</p>
-                    </div>
-                  ) : null }
+                    <div className= {styles.containerAlerts}>
+											<div className= {styles.alerts}>
+												<p>{ formik.errors.password }</p>
+											</div>
+										</div>
+                  ) : null } 
 
-                  <button 
-                    className="waves-effect waves-light btn indigo darken-2"
-                    type="submit"
-                  >
-                    Iniciar Sesion
-                  </button>
+									<div className={styles.marginButton}>
+										<button 
+											type="submit" 
+											className="waves-effect waves-light indigo darken-2 btn"
+										>
+											Iniciar Sesiòn
+										</button>
+									</div>
                   </form>
                 </div>
               </div>

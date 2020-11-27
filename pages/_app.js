@@ -1,6 +1,6 @@
 
 import client from '../config/apollo'
-import { ApolloProvider } from '@apollo/client'
+import { ApolloProvider } from '@apollo/client';
 
 function MyApp({ Component, pageProps }) {
   return (

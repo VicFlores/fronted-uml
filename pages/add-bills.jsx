@@ -5,6 +5,7 @@ import { gql, useMutation } from '@apollo/client';
 import { useRouter } from 'next/router'
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import styles from '../styles/Home.module.css';
 
 const NEW_BILL = gql`
   mutation newBill($input: BillInput ) {
@@ -34,10 +35,10 @@ const AddBills = () => {
     },
 
     validationSchema: Yup.object({
-      name: Yup.string().required('Name of product is required'),
-      price: Yup.number().positive('Negative numbers are not supported').required('Price is required'),
-      client: Yup.string().required('Name of client is required'),
-      to: Yup.date().required('To is required')
+      name: Yup.string().required('Nombre de producto es requerido'),
+      price: Yup.number().positive('No se admiten numero negativos').required('Precio es requerido'),
+      client: Yup.string().required('Nombre de cliente es requerido'),
+      to: Yup.date().required('Fecha de garantia es requerida')
     }),
 
     onSubmit: async valores => {
@@ -66,8 +67,9 @@ const AddBills = () => {
         <title>Add</title>
         <link rel="icon" href="/favicon.ico" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" /> 
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />       
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+				<link rel="stylesheet" href="./static/index.css"/>
       </Head>
 
       <Navbar />
@@ -94,10 +96,11 @@ const AddBills = () => {
                   </div>
 
                 { formik.touched.name && formik.errors.name ? (
-                  <div className="">
-                    <p className="">Error</p>
-                    <p>{ formik.errors.name }</p>
-                  </div>
+									<div className= {styles.containerAlerts}>
+										<div className= {styles.alerts}>
+											<p>{ formik.errors.name }</p>
+										</div>
+									</div>
                 ) : null }
 
                 </div>
@@ -115,10 +118,11 @@ const AddBills = () => {
                   </div>
 
                   { formik.touched.price && formik.errors.price ? (
-                  <div className="">
-                    <p className="">Error</p>
-                    <p>{ formik.errors.price }</p>
-                  </div>
+                  <div className= {styles.containerAlerts}>
+										<div className= {styles.alerts}>
+											<p>{ formik.errors.price }</p>
+										</div>
+									</div>
                 ) : null }
 
                 </div>
@@ -136,10 +140,11 @@ const AddBills = () => {
                   </div>
 
                   { formik.touched.client && formik.errors.client ? (
-                  <div className="">
-                    <p className="">Error</p>
-                    <p>{ formik.errors.client }</p>
-                  </div>
+										<div className= {styles.containerAlerts}>
+											<div className= {styles.alerts}>
+												<p>{ formik.errors.client }</p>
+											</div>
+										</div>
                 ) : null }
 
                 </div>
@@ -157,21 +162,24 @@ const AddBills = () => {
                   </div>
 
                   { formik.touched.to && formik.errors.to ? (
-                  <div className="">
-                    <p className="">Error</p>
-                    <p>{ formik.errors.to }</p>
-                  </div>
+										<div className= {styles.containerAlerts}>
+											<div className= {styles.alerts}>
+												<p>{ formik.errors.to }</p>
+											</div>
+										</div>
                 ) : null }
 
                 </div>
 
                 <div className="col s12 m12">
-                <button 
-                  type="submit" 
-                  className="waves-effect waves-light btn"
-                >
-                  Guardar
-                </button>
+									<div className={styles.marginButton}>
+										<button 
+											type="submit" 
+											className="waves-effect waves-light btn"
+										>
+											Guardar
+										</button>
+									</div>
                 </div>
               </div>
             </form>

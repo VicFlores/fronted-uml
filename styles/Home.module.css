@@ -1,0 +1,39 @@
+/*! Globales */
+
+.marginButton {
+	padding-top: 20px;
+}
+
+/*! Alertas */
+
+.containerAlerts {
+	background-color: #fae0df;
+}
+
+.alerts {
+	font-size: 15px;
+	text-align: center;
+	margin: 15px;
+	height: 45px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.alerts p {
+	padding: 3px;
+}
+
+.validateAlert {
+	background-color: #eeeeee;
+	color: #cf1b1b;
+	font-size: 15px;
+	text-align: center;
+	margin: 15px;
+	height: 45px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+

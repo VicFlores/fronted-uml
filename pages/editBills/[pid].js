@@ -3,7 +3,9 @@ import Navbar from '../../components/Navbar';
 import { gql, useQuery, useMutation } from '@apollo/client';
 import { useRouter } from 'next/router';
 import { Formik } from 'formik';
+import Swal from 'sweetalert2'
 import * as Yup from 'yup';
+import styles from '../../styles/Home.module.css';
 
 const GET_BILL = gql`
   query getBill($id: ID!){
@@ -42,10 +44,10 @@ const EditBills = () => {
   const [updateBill] = useMutation(EDIT_BILL);
 
   const schemaValidation = Yup.object({
-    name: Yup.string().required('Name of product is required'),
-    price: Yup.number().positive('Negative numbers are not supported').required('Price is required'),
-    client: Yup.string().required('Name of client is required'),
-    to: Yup.string().required('To is required')
+    name: Yup.string().required('Nombre de producto es requerido'),
+		price: Yup.number().positive('No se admiten numero negativos').required('Precio es requerido'),
+		client: Yup.string().required('Nombre de cliente es requerido'),
+		to: Yup.date().required('Fecha de garantia es requerida')
   });
 
   if (loading) return 'Cargando';
@@ -65,7 +67,13 @@ const EditBills = () => {
             to
           }
         }
-      })
+			})
+			
+			Swal.fire(
+				'Actualizado',
+				'Factura actualizada correctamente',
+				'success'
+			)
 
       router.push('/dashboard');
     } catch (error) {
@@ -118,10 +126,11 @@ const EditBills = () => {
                         </div>
 
                         { props.touched.name && props.errors.name ? (
-                          <div className="">
-                            <p className="">Error</p>
-                            <p>{ props.errors.name }</p>
-                          </div>
+                          <div className= {styles.containerAlerts}>
+														<div className= {styles.alerts}>
+															<p>{ props.errors.name }</p>
+														</div>
+													</div>
                         ) : null }
 
                       </div>
@@ -139,10 +148,11 @@ const EditBills = () => {
                         </div>
 
                         { props.touched.price && props.errors.price ? (
-                          <div className="">
-                            <p className="">Error</p>
-                            <p>{ props.errors.price }</p>
-                          </div>
+                          <div className= {styles.containerAlerts}>
+														<div className= {styles.alerts}>
+															<p>{ props.errors.price }</p>
+														</div>
+													</div>
                         ) : null }
 
                       </div>
@@ -160,10 +170,11 @@ const EditBills = () => {
                         </div>
 
                         { props.touched.client && props.errors.client ? (
-                        <div className="">
-                          <p className="">Error</p>
-                          <p>{ props.errors.client }</p>
-                        </div>
+													<div className= {styles.containerAlerts}>
+														<div className= {styles.alerts}>
+															<p>{ props.errors.client }</p>
+														</div>
+													</div>
                         ) : null }
 
                       </div>
@@ -181,21 +192,24 @@ const EditBills = () => {
                         </div>
 
                         { props.touched.to && props.errors.to ? (
-                        <div className="">
-                          <p className="">Error</p>
-                          <p>{ props.errors.to }</p>
-                        </div>
+													<div className= {styles.containerAlerts}>
+														<div className= {styles.alerts}>
+															<p>{ props.errors.to }</p>
+														</div>
+													</div>
                         ) : null }
 
                       </div>
 
                       <div className="col s12 m12">
-                        <button 
-                          type="submit" 
-                          className="waves-effect waves-light btn"
-                        >
-                          Editar
-                        </button>
+												<div className={styles.marginButton}>
+													<button 
+														type="submit" 
+														className="waves-effect waves-light btn"
+													>
+														Editar factura
+													</button>
+												</div>
                       </div>
 
                     </div>

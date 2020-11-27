@@ -1,7 +1,6 @@
 import React from 'react';
 import Router from 'next/router'
 import { useMutation, gql } from '@apollo/client'
-import Link from 'next/link';
 
 const DELETE_BILL = gql`
   mutation deleteBill($id: ID!) {
