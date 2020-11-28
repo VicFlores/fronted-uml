@@ -37,7 +37,7 @@ const Bills = ({ clientDB }) => {
     }
   });
 
-  const { name, price, client, from, flaw, to, id  } = clientDB;
+	const { name, price, client, from, flaw, to, id  } = clientDB;
 
   const confirmDeleted = async () => {
     const { data } = await deleteBill({

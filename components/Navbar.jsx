@@ -16,7 +16,9 @@ const Navbar = () => {
 
   const router = useRouter();
 
-  const { data, loading, error } = useQuery(GET_EMPLOYEE);
+  const { data, loading, error } = useQuery(GET_EMPLOYEE, {
+    fetchPolicy: "cache-and-network"
+  });
 
   if (loading) return null;
 

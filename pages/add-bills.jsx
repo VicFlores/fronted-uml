@@ -42,7 +42,7 @@ const AddBills = () => {
     }),
 
     onSubmit: async valores => {
-      const { name, price, to, client } = valores;
+			const { name, price, to, client } = valores;
       try {
         const { data } = await newBill({
           variables: {
@@ -50,7 +50,7 @@ const AddBills = () => {
                 name,
                 price,
                 to,
-                client
+								client,
               }
           }
       });
